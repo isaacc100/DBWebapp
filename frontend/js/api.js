@@ -4,10 +4,18 @@
  * Set API_BASE to your deployed Worker URL, e.g.:
  *   https://dbwebapp-worker.<your-subdomain>.workers.dev
  *
- * During local development with `wrangler dev` it defaults to localhost:8787.
+ * Defaults to localhost:8787 for local `wrangler dev` sessions.
+ * In production the Worker URL must always use HTTPS.
  */
 
-const API_BASE = window.API_BASE || 'http://localhost:8787';
+const API_BASE = (() => {
+  if (window.API_BASE) return window.API_BASE;
+  // Auto-use HTTPS when the page itself is served over HTTPS
+  if (location.protocol === 'https:') {
+    return 'https://dbwebapp-worker.your-subdomain.workers.dev';
+  }
+  return 'http://localhost:8787';
+})();
 
 async function apiFetch(path, options = {}) {
   const url = `${API_BASE}${path}`;
