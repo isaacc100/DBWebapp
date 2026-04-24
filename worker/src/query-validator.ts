@@ -34,7 +34,7 @@ const BLOCKED_TOKENS = new Set([
   'EXECUTE',
 ]);
 
-/** Remove -- and /* *\/ comments */
+/** Remove -- and block comments */
 function stripComments(sql: string): string {
   return sql
     .replace(/\/\*[\s\S]*?\*\//g, ' ')

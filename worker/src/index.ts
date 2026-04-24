@@ -49,7 +49,11 @@ function isValidColumnName(name: string): boolean {
 
 /** Ensure a SELECT query never returns more than maxRows rows. */
 function addRowLimit(sql: string, maxRows: number): string {
-  const trimmed = sql.trim().replace(/;+\s*$/, '');
+  // Remove trailing semicolons and whitespace without using a backtracking regex
+  let trimmed = sql.trim();
+  while (trimmed.endsWith(';') || trimmed.endsWith(' ') || trimmed.endsWith('\t') || trimmed.endsWith('\n') || trimmed.endsWith('\r')) {
+    trimmed = trimmed.slice(0, -1);
+  }
   if (/\bLIMIT\b/i.test(trimmed)) {
     // Cap any existing LIMIT value
     return trimmed.replace(/\bLIMIT\s+(\d+)/i, (_m, n) =>
