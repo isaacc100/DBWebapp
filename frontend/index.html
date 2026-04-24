@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DBWebapp — Cloudflare D1 Explorer</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+      </svg>
+      DBWebapp
+    </a>
+    <div class="navbar-links">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="query.html" class="nav-link">SQL Playground</a>
+      <a href="browse.html" class="nav-link">Browse</a>
+      <a href="edit.html" class="nav-link">Edit</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="hero">
+    <h1 class="hero-title">Cloudflare D1 Explorer</h1>
+    <p class="hero-subtitle">
+      A secure, browser-based interface for exploring and editing your
+      Cloudflare D1 SQLite database — built entirely on Workers &amp; Pages.
+    </p>
+
+    <div class="feature-cards">
+      <a href="query.html" class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <h3>SQL Playground</h3>
+        <p>Write and run SQL queries with syntax highlighting, execution stats, and query history.</p>
+      </a>
+      <a href="browse.html" class="feature-card">
+        <span class="feature-icon">🔍</span>
+        <h3>Browse</h3>
+        <p>Explore any table with search, column sorting, and pagination — read-only mode.</p>
+      </a>
+      <a href="edit.html" class="feature-card">
+        <span class="feature-icon">✏️</span>
+        <h3>Edit</h3>
+        <p>Add, edit, and delete rows safely using parameterised queries — no raw SQL.</p>
+      </a>
+    </div>
+
+    <div style="margin-top: 3rem; max-width: 640px; margin-left: auto; margin-right: auto;">
+      <div class="card">
+        <p class="card-title">Quick Setup</p>
+        <ol style="padding-left: 1.25rem; color: var(--text-muted); font-size: 0.875rem; line-height: 2;">
+          <li>Create a D1 database: <code>wrangler d1 create dbwebapp</code></li>
+          <li>Add the database ID to <code>worker/wrangler.toml</code></li>
+          <li>Apply the schema: <code>wrangler d1 execute dbwebapp --file=schema.sql</code></li>
+          <li>Start the worker: <code>cd worker &amp;&amp; wrangler dev</code></li>
+          <li>Open <a href="query.html">SQL Playground</a> and start querying!</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

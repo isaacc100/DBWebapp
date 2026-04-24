@@ -1,0 +1,10 @@
+name = "dbwebapp-worker"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+# Replace `database_id` with the output of:
+#   wrangler d1 create dbwebapp
+[[d1_databases]]
+binding = "DB"
+database_name = "dbwebapp"
+database_id = "your-d1-database-id-here"

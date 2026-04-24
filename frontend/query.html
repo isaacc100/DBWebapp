@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQL Playground — DBWebapp</title>
+  <!-- CodeMirror -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/monokai.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+      </svg>
+      DBWebapp
+    </a>
+    <div class="navbar-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="query.html" class="nav-link active">SQL Playground</a>
+      <a href="browse.html" class="nav-link">Browse</a>
+      <a href="edit.html" class="nav-link">Edit</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+  <h1 class="page-title">⚡ SQL Playground</h1>
+  <p class="page-subtitle">Write and run SQL queries against your D1 database. SELECT, INSERT, and UPDATE are permitted.</p>
+
+  <div class="split-layout">
+
+    <!-- ── Sidebar ─────────────────────────────────────────────────── -->
+    <aside>
+      <div class="card" style="margin-bottom: 1rem;">
+        <p class="card-title">Examples</p>
+        <div id="example-list"></div>
+      </div>
+      <div class="card">
+        <p class="card-title">History</p>
+        <div id="history-list"></div>
+      </div>
+    </aside>
+
+    <!-- ── Main ───────────────────────────────────────────────────── -->
+    <div>
+      <div class="card" style="margin-bottom: 1rem; padding: 0;">
+        <!-- Editor toolbar -->
+        <div style="display:flex; align-items:center; gap:.5rem; padding:.75rem 1rem; border-bottom:1px solid var(--border);">
+          <span style="font-size:.8rem; color:var(--text-muted); font-weight:600; text-transform:uppercase; letter-spacing:.05em;">SQL Editor</span>
+          <span style="color:var(--text-muted); font-size:.75rem; margin-left:auto;">Ctrl+Enter to run</span>
+        </div>
+        <textarea id="sql-input"></textarea>
+      </div>
+
+      <div class="toolbar">
+        <button id="run-btn" class="btn btn-primary">▶ Run Query</button>
+        <button id="clear-btn" class="btn btn-ghost">Clear</button>
+      </div>
+
+      <!-- Stats row -->
+      <div id="stats-row" class="stat-row hidden"></div>
+
+      <!-- Output -->
+      <div id="output-panel" class="card" style="margin-top: .75rem; min-height: 100px;">
+        <div class="empty-state">Run a query to see results here.</div>
+      </div>
+
+      <!-- Security notice -->
+      <div class="alert alert-info" style="margin-top:.75rem; font-size:.8rem;">
+        🛡 Allowed: <strong>SELECT, INSERT, UPDATE</strong>.
+        Blocked: DROP, ALTER, DELETE, TRUNCATE, CREATE, PRAGMA, and multiple statements.
+        SELECT results are capped at 100 rows.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/sql/sql.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/query.js"></script>
+</body>
+</html>
