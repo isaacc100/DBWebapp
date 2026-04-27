@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit — DBWebapp</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+      </svg>
+      DBWebapp
+    </a>
+    <div class="navbar-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="query.html" class="nav-link">SQL Playground</a>
+      <a href="browse.html" class="nav-link">Browse</a>
+      <a href="edit.html" class="nav-link active">Edit</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+  <h1 class="page-title">✏️ Edit</h1>
+  <p class="page-subtitle">Add, edit, and delete rows safely using parameterised queries — no raw SQL.</p>
+
+  <!-- Status message area -->
+  <div id="status-msg" style="margin-bottom: .75rem;"></div>
+
+  <!-- Controls -->
+  <div class="toolbar card" style="margin-bottom: 1rem;">
+    <select id="table-select" class="select" style="width: 200px; flex-shrink: 0;">
+      <option value="">Loading tables…</option>
+    </select>
+    <button id="add-row-btn" class="btn btn-success" disabled style="margin-left: auto;">
+      + Add Row
+    </button>
+  </div>
+
+  <!-- Table content -->
+  <div id="table-content" class="card">
+    <div class="empty-state">Select a table to start editing.</div>
+  </div>
+
+  <!-- Pagination -->
+  <div style="display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; margin-top: 1rem;">
+    <span id="pagination-info" class="pagination-info"></span>
+    <div id="pagination" class="pagination"></div>
+  </div>
+</div>
+
+<!-- ── Row Modal ──────────────────────────────────────────────────────────── -->
+<div id="row-modal" class="modal-overlay hidden">
+  <div class="modal">
+    <h2 id="modal-title" class="modal-title">Edit Row</h2>
+    <div id="modal-form"></div>
+    <div class="form-actions">
+      <button id="modal-cancel" class="btn btn-ghost">Cancel</button>
+      <button id="modal-save"   class="btn btn-primary">Save</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/edit.js"></script>
+</body>
+</html>

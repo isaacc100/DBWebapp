@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse — DBWebapp</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+      </svg>
+      DBWebapp
+    </a>
+    <div class="navbar-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="query.html" class="nav-link">SQL Playground</a>
+      <a href="browse.html" class="nav-link active">Browse</a>
+      <a href="edit.html" class="nav-link">Edit</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+  <h1 class="page-title">🔍 Browse</h1>
+  <p class="page-subtitle">Read-only explorer — select a table to inspect its data.</p>
+
+  <!-- Controls -->
+  <div class="toolbar card" style="margin-bottom: 1rem;">
+    <select id="table-select" class="select" style="width: 200px; flex-shrink: 0;">
+      <option value="">Loading tables…</option>
+    </select>
+    <input id="search-input" type="text" class="input" placeholder="Search all columns…" style="max-width: 300px;" />
+    <button id="toggle-schema" class="btn btn-ghost btn-sm" style="margin-left: auto;">Show Schema</button>
+  </div>
+
+  <!-- Schema panel -->
+  <div id="schema-panel" class="card hidden" style="margin-bottom: 1rem;">
+    <p class="card-title">Table Schema</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Column</th><th>Type</th><th>Constraints</th><th>Default</th></tr></thead>
+        <tbody id="schema-list"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Table content -->
+  <div id="table-content" class="card">
+    <div class="empty-state">Select a table above to start browsing.</div>
+  </div>
+
+  <!-- Pagination -->
+  <div style="display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; margin-top: 1rem;">
+    <span id="pagination-info" class="pagination-info"></span>
+    <div id="pagination" class="pagination"></div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/browse.js"></script>
+</body>
+</html>
